@@ -1,6 +1,6 @@
 #include <iostream>
 
-
+// Memory Management & RIAA (Resource Acquisition is Intialization ) with C++
 
 /// <summary>
 /// In the previous example, we already done the dynamic array but fixed type to int
