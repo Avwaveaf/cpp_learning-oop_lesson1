@@ -12,7 +12,7 @@ class DynamicArray
 {
 	size_t m_size;
 	// declare array that store address
-	T * m_arr;
+	T* m_arr;
 
 public:
 	DynamicArray(size_t size)
@@ -29,7 +29,7 @@ public:
 	// Destructor with cleanup, bcs we use pointer
 	~DynamicArray()
 	{
-		delete [] m_arr; 
+		delete[] m_arr;
 		std::cout << "Array deconstructed \n";
 	}
 
@@ -56,10 +56,37 @@ public:
 
 	void print() const
 	{
-		for (size_t i = 0; i <m_size; i++)
+		for (size_t i = 0; i < m_size; i++)
 		{
 			std::cout << i << " " << m_arr[i] << "\n";
 		}
+	}
+
+	// Operator Overloading Implementation
+
+	// Constant overloading 
+	/*
+	 This technique involves providing two versions of the same member function,
+	 one with the const qualifier and one without. It's used to ensure appropriate
+	 behavior for both constant and non-constant objects.
+	*/
+
+	/*
+		PURPOSE:
+		1. Read-Only Access for Const Objects
+		2. Read-Write Access for Non const Objects.
+	*/
+	const T& operator [] (size_t index) const
+	{
+		return m_arr[index];
+	}
+
+	T& operator [] (size_t index)
+	{
+
+		// returning the reference of the given index. not the copy;
+		// so user can modify and also get to the straight value.
+		return m_arr[index];
 	}
 
 };
@@ -78,16 +105,19 @@ int main()
 	myArr.print();
 
 	std::cout << "string array:\n";
-	
+
 	DynamicArray<std::string> names(2);
 
 	names.set(0, "fdsfsddfs");
 
 	auto n = names.get(0);
 	std::cout << "\n\n" << n << "\n";
-	
+
+	// calling Opeartor Overloading
+	names[1] = "Afif";
+
 	names.print();
-	
+
 	return 0;
 
 }
